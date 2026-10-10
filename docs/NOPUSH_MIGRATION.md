@@ -45,12 +45,11 @@ Nopush/
 
 ## Current project status
 
-`Nopush.xcodeproj/project.pbxproj` is present in the canonical directory. The project has not yet been build-verified, and some target and test settings still contain historical `Habit Quest` names.
+`Nopush.xcodeproj/project.pbxproj` is present in the canonical directory. App and test target names now use Nopush; the legacy directory names and Core Data model identifier remain in place to preserve existing project paths and stored data. The project has not yet been build-verified.
 
 ## Safe migration sequence
 
-1. Rename the Swift entry file to `NopushApp.swift` and clean stale target/test naming in the project settings.
-2. Build and launch the canonical app in Xcode.
+1. Build and launch the canonical app in Xcode.
 3. Verify the MVP loop: task creation → timer → completion → rating → EXP → attribute growth → stats.
 4. Move canonical files into the target Nopush directory structure.
 5. Update Xcode file references and product/display names.
