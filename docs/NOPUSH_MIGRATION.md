@@ -50,11 +50,11 @@ Nopush/
 ## Safe migration sequence
 
 1. Build and launch the canonical app in Xcode.
-3. Verify the MVP loop: task creation → timer → completion → rating → EXP → attribute growth → stats.
-4. Move canonical files into the target Nopush directory structure.
-5. Update Xcode file references and product/display names.
-6. Run build/tests again.
-7. Move superseded versions into `Archive/` or remove them in a separate cleanup PR.
+2. Verify the MVP loop: task creation → timer → completion → rating → EXP → attribute growth → stats.
+3. Move canonical files into the target Nopush directory structure.
+4. Update Xcode file references and product/display names.
+5. Run build/tests again.
+6. Move superseded versions into `Archive/` or remove them in a separate cleanup PR.
 
 ## Known repository issue
 
