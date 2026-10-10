@@ -54,9 +54,8 @@ For now:
 
 ## Immediate engineering priorities
 
-1. Clean remaining legacy naming from the existing `Nopush.xcodeproj` configuration.
-2. Verify the canonical app compiles and launches.
-3. Consolidate duplicated source files and backup files.
-4. Verify the full MVP loop end to end.
-5. Add tests around rating, EXP, delay packages, and persistence.
-6. Move the canonical project into a clean top-level `Nopush/` structure after build verification.
+1. Verify the canonical app compiles and launches.
+2. Consolidate duplicated source files and backup files.
+3. Verify the full MVP loop end to end.
+4. Add tests around rating, EXP, delay packages, and persistence.
+5. Move the canonical project into a clean top-level `Nopush/` structure after build verification.
