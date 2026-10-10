@@ -16,7 +16,11 @@ The most complete implementation currently lives under:
 
 `Habit Quest MVP1.0/Habit Quest L/Habit Quest MVP/`
 
-This codebase contains the current Core Data stack, main tab interface, timer flow, habit formation flow, progression views, and gameplay managers. It is the source we will consolidate into the final Nopush project structure.
+The canonical Xcode project is:
+
+`Habit Quest MVP1.0/Habit Quest L/Habit Quest MVP/Nopush.xcodeproj`
+
+This codebase contains the Core Data stack, main tab interface, timer flow, habit formation flow, progression views, gameplay managers, and a complete `project.pbxproj`.
 
 ## Technology
 
@@ -38,19 +42,21 @@ This codebase contains the current Core Data stack, main tab interface, timer fl
 
 ## Migration status
 
-We are currently consolidating several historical project versions into one Nopush codebase.
+We are consolidating several historical project versions into one Nopush codebase.
 
 For now:
 
-- Do not delete legacy directories until the canonical project builds successfully.
+- Use `Nopush.xcodeproj` as the canonical project.
+- Do not delete legacy directories until the canonical project has been build-verified.
 - New work should target the canonical implementation above.
 - Product-facing naming should use **Nopush**.
 - `Quest` may remain as an in-product gameplay term, but not as the app name.
 
 ## Immediate engineering priorities
 
-1. Restore and verify a complete Xcode project for the canonical implementation.
-2. Consolidate duplicated source files and backup files.
-3. Standardize naming and project structure under Nopush.
+1. Clean remaining legacy naming from the existing `Nopush.xcodeproj` configuration.
+2. Verify the canonical app compiles and launches.
+3. Consolidate duplicated source files and backup files.
 4. Verify the full MVP loop end to end.
 5. Add tests around rating, EXP, delay packages, and persistence.
+6. Move the canonical project into a clean top-level `Nopush/` structure after build verification.
