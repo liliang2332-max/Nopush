@@ -20,7 +20,7 @@ The canonical Xcode project is:
 
 `Habit Quest MVP1.0/Habit Quest L/Habit Quest MVP/Nopush.xcodeproj`
 
-This codebase contains the Core Data stack, main tab interface, timer flow, habit formation flow, progression views, gameplay managers, and a complete `project.pbxproj`.
+This codebase contains the Core Data stack, main tab interface, timer flow, habit formation flow, progression views, gameplay managers, and a complete `project.pbxproj`. The Swift app entry file is `NopushApp.swift`.
 
 ## Technology
 
