@@ -47,15 +47,15 @@ We are consolidating several historical project versions into one Nopush codebas
 For now:
 
 - Use `Nopush.xcodeproj` as the canonical project.
-- Do not delete legacy directories until the canonical project has been build-verified.
+- Keep legacy directories until the canonical app has been launched and the core loop verified in an iOS Simulator.
 - New work should target the canonical implementation above.
 - Product-facing naming should use **Nopush**.
 - `Quest` may remain as an in-product gameplay term, but not as the app name.
 
 ## Immediate engineering priorities
 
-1. Verify the canonical app compiles and launches.
-2. Consolidate duplicated source files and backup files.
-3. Verify the full MVP loop end to end.
+1. Launch the canonical app in an iOS Simulator; its CI build now passes.
+2. Verify the full MVP loop end to end.
+3. Consolidate duplicated source files and backup files.
 4. Add tests around rating, EXP, delay packages, and persistence.
 5. Move the canonical project into a clean top-level `Nopush/` structure after build verification.
