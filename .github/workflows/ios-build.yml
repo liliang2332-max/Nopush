@@ -1,0 +1,30 @@
+name: iOS build
+
+on:
+  push:
+    branches:
+      - refactor/nopush-unification
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-26
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Build Nopush for iOS Simulator
+        run: |
+          xcodebuild \
+            -project "Habit Quest MVP1.0/Habit Quest L/Habit Quest MVP/Nopush.xcodeproj" \
+            -target Nopush \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            CODE_SIGNING_ALLOWED=NO \
+            build
