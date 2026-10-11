@@ -45,11 +45,11 @@ Nopush/
 
 ## Current project status
 
-`Nopush.xcodeproj/project.pbxproj` is present in the canonical directory. App and test target names now use Nopush; the legacy directory names and Core Data model identifier remain in place to preserve existing project paths and stored data. The project has not yet been build-verified.
+`Nopush.xcodeproj/project.pbxproj` is present in the canonical directory. App and test target names now use Nopush; the legacy directory names and Core Data model identifier remain in place to preserve existing project paths and stored data. The GitHub Actions iOS build passed on a macOS 26 runner, compiling the Nopush target for the iOS Simulator. Runtime launch and the end-to-end MVP loop still need verification.
 
 ## Safe migration sequence
 
-1. Build and launch the canonical app in Xcode.
+1. Launch the canonical app in an iOS Simulator.
 2. Verify the MVP loop: task creation → timer → completion → rating → EXP → attribute growth → stats.
 3. Move canonical files into the target Nopush directory structure.
 4. Update Xcode file references and product/display names.
@@ -58,4 +58,4 @@ Nopush/
 
 ## Known repository issue
 
-The project file exists, but a successful build has not been confirmed. Build validation is the next gate before moving or deleting legacy directories.
+The project file exists and the app target compiles in CI. Confirm it launches in the simulator and verify the core loop before moving or deleting legacy directories.
