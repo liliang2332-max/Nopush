@@ -1,0 +1,1015 @@
+{
+  "poolId": "home_boredom_100",
+  "name": "宅家无聊时的100件小事",
+  "version": 1,
+  "language": "zh-CN",
+  "taskType": "independent_adventure",
+  "count": 100,
+  "notes": [
+    "本清单为产品内原创整理的预设任务，不代表从小红书笔记逐条提取。",
+    "开始任务时，用户可以设定自己的完成时限和目标。",
+    "若任务不适合当下情境，用户可以跳过并重新抽取。"
+  ],
+  "tasks": [
+    {
+      "id": "home_001",
+      "type": "adventure",
+      "category": "收纳整理",
+      "title": "整理桌面一个小角落",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_002",
+      "type": "adventure",
+      "category": "收纳整理",
+      "title": "把5件物品放回原位",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_003",
+      "type": "adventure",
+      "category": "收纳整理",
+      "title": "整理床头柜",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_004",
+      "type": "adventure",
+      "category": "收纳整理",
+      "title": "给包包做一次快速清理",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_005",
+      "type": "adventure",
+      "category": "收纳整理",
+      "title": "整理一个抽屉的一小部分",
+      "defaultDurationMinutes": 10,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_006",
+      "type": "adventure",
+      "category": "收纳整理",
+      "title": "把散落的衣服放进脏衣篮或衣柜",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_007",
+      "type": "adventure",
+      "category": "收纳整理",
+      "title": "整理沙发或椅子上的物品",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_008",
+      "type": "adventure",
+      "category": "收纳整理",
+      "title": "给常用充电线找个固定位置",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_009",
+      "type": "adventure",
+      "category": "收纳整理",
+      "title": "清理手机旁边的小区域",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_010",
+      "type": "adventure",
+      "category": "收纳整理",
+      "title": "把今天穿过的衣服处理好",
+      "defaultDurationMinutes": 10,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_011",
+      "type": "adventure",
+      "category": "轻松清洁",
+      "title": "擦一下最常用的桌面",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_012",
+      "type": "adventure",
+      "category": "轻松清洁",
+      "title": "清洁一个镜子或玻璃小区域",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_013",
+      "type": "adventure",
+      "category": "轻松清洁",
+      "title": "把水杯洗好并放回去",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_014",
+      "type": "adventure",
+      "category": "轻松清洁",
+      "title": "清理洗手台周围",
+      "defaultDurationMinutes": 8,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_015",
+      "type": "adventure",
+      "category": "轻松清洁",
+      "title": "倒掉一个满了的小垃圾桶",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_016",
+      "type": "adventure",
+      "category": "轻松清洁",
+      "title": "吸一下或扫一下一个小区域",
+      "defaultDurationMinutes": 10,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_017",
+      "type": "adventure",
+      "category": "轻松清洁",
+      "title": "把厨房台面上的东西归位",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_018",
+      "type": "adventure",
+      "category": "轻松清洁",
+      "title": "清理门口的一小块区域",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_019",
+      "type": "adventure",
+      "category": "轻松清洁",
+      "title": "更换一条毛巾",
+      "defaultDurationMinutes": 8,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_020",
+      "type": "adventure",
+      "category": "轻松清洁",
+      "title": "给一盆植物浇水或擦擦叶子",
+      "defaultDurationMinutes": 10,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_021",
+      "type": "adventure",
+      "category": "照顾自己",
+      "title": "喝一杯水",
+      "defaultDurationMinutes": 3,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_022",
+      "type": "adventure",
+      "category": "照顾自己",
+      "title": "做3次缓慢的深呼吸",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_023",
+      "type": "adventure",
+      "category": "照顾自己",
+      "title": "给自己做一次简单护肤",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_024",
+      "type": "adventure",
+      "category": "照顾自己",
+      "title": "换上让自己舒服的衣服",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_025",
+      "type": "adventure",
+      "category": "照顾自己",
+      "title": "闭眼休息8分钟",
+      "defaultDurationMinutes": 8,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_026",
+      "type": "adventure",
+      "category": "照顾自己",
+      "title": "梳理头发或整理仪容",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_027",
+      "type": "adventure",
+      "category": "照顾自己",
+      "title": "打开窗户通通风",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_028",
+      "type": "adventure",
+      "category": "照顾自己",
+      "title": "给自己准备一份简单的小点心",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_029",
+      "type": "adventure",
+      "category": "照顾自己",
+      "title": "听一首喜欢的歌，什么也不做",
+      "defaultDurationMinutes": 10,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_030",
+      "type": "adventure",
+      "category": "照顾自己",
+      "title": "写下此刻最需要的一件事",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_031",
+      "type": "adventure",
+      "category": "轻运动",
+      "title": "站起来活动肩膀和手臂",
+      "defaultDurationMinutes": 3,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_032",
+      "type": "adventure",
+      "category": "轻运动",
+      "title": "在家慢慢走5分钟",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_033",
+      "type": "adventure",
+      "category": "轻运动",
+      "title": "做一组轻柔颈部活动",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_034",
+      "type": "adventure",
+      "category": "轻运动",
+      "title": "伸展一下小腿和脚踝",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_035",
+      "type": "adventure",
+      "category": "轻运动",
+      "title": "做10次坐站动作或椅子旁活动",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_036",
+      "type": "adventure",
+      "category": "轻运动",
+      "title": "跟着喜欢的音乐随意动一动",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_037",
+      "type": "adventure",
+      "category": "轻运动",
+      "title": "伸展双手和手腕",
+      "defaultDurationMinutes": 3,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_038",
+      "type": "adventure",
+      "category": "轻运动",
+      "title": "做一次全身舒展",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_039",
+      "type": "adventure",
+      "category": "轻运动",
+      "title": "在房间里走一圈并看看窗外",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_040",
+      "type": "adventure",
+      "category": "轻运动",
+      "title": "做5分钟轻松呼吸配合伸展",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_041",
+      "type": "adventure",
+      "category": "创意小事",
+      "title": "画一个随手小涂鸦",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_042",
+      "type": "adventure",
+      "category": "创意小事",
+      "title": "给今天拍一张照片",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_043",
+      "type": "adventure",
+      "category": "创意小事",
+      "title": "写三句话描述现在的心情",
+      "defaultDurationMinutes": 8,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_044",
+      "type": "adventure",
+      "category": "创意小事",
+      "title": "用家里的物品摆一个小造型",
+      "defaultDurationMinutes": 10,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_045",
+      "type": "adventure",
+      "category": "创意小事",
+      "title": "给一张旧照片起个标题",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_046",
+      "type": "adventure",
+      "category": "创意小事",
+      "title": "写下一个最近想尝试的小点子",
+      "defaultDurationMinutes": 8,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_047",
+      "type": "adventure",
+      "category": "创意小事",
+      "title": "用三种颜色画一张小卡片",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_048",
+      "type": "adventure",
+      "category": "创意小事",
+      "title": "设计一个今天的专属表情符号",
+      "defaultDurationMinutes": 8,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_049",
+      "type": "adventure",
+      "category": "创意小事",
+      "title": "给房间的一角拍一张前后照",
+      "defaultDurationMinutes": 10,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_050",
+      "type": "adventure",
+      "category": "创意小事",
+      "title": "写一句送给自己的鼓励",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_051",
+      "type": "adventure",
+      "category": "娱乐放松",
+      "title": "收藏一首想听的歌",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_052",
+      "type": "adventure",
+      "category": "娱乐放松",
+      "title": "看一段让你开心的短视频",
+      "defaultDurationMinutes": 10,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_053",
+      "type": "adventure",
+      "category": "娱乐放松",
+      "title": "读几页轻松的书或漫画",
+      "defaultDurationMinutes": 10,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_054",
+      "type": "adventure",
+      "category": "娱乐放松",
+      "title": "找一张喜欢的壁纸或图片",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_055",
+      "type": "adventure",
+      "category": "娱乐放松",
+      "title": "回顾一段开心的回忆",
+      "defaultDurationMinutes": 8,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_056",
+      "type": "adventure",
+      "category": "娱乐放松",
+      "title": "听一段播客或有声书",
+      "defaultDurationMinutes": 10,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_057",
+      "type": "adventure",
+      "category": "娱乐放松",
+      "title": "玩一个不超过5分钟的小游戏",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_058",
+      "type": "adventure",
+      "category": "娱乐放松",
+      "title": "给自己做一个迷你歌单",
+      "defaultDurationMinutes": 8,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_059",
+      "type": "adventure",
+      "category": "娱乐放松",
+      "title": "欣赏一件家里喜欢的东西",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_060",
+      "type": "adventure",
+      "category": "娱乐放松",
+      "title": "看窗外或观察房间里的光影",
+      "defaultDurationMinutes": 10,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_061",
+      "type": "adventure",
+      "category": "联系与分享",
+      "title": "给朋友发一句问候",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_062",
+      "type": "adventure",
+      "category": "联系与分享",
+      "title": "给家人发一张日常照片",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_063",
+      "type": "adventure",
+      "category": "联系与分享",
+      "title": "回复一条一直想回复的消息",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_064",
+      "type": "adventure",
+      "category": "联系与分享",
+      "title": "给重要的人说声谢谢",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_065",
+      "type": "adventure",
+      "category": "联系与分享",
+      "title": "给朋友推荐一首歌或一部作品",
+      "defaultDurationMinutes": 8,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_066",
+      "type": "adventure",
+      "category": "联系与分享",
+      "title": "给自己留一条语音备忘",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_067",
+      "type": "adventure",
+      "category": "联系与分享",
+      "title": "给未来的自己写一句话",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_068",
+      "type": "adventure",
+      "category": "联系与分享",
+      "title": "和家里人聊一个轻松的话题",
+      "defaultDurationMinutes": 10,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_069",
+      "type": "adventure",
+      "category": "联系与分享",
+      "title": "给一位最近想到的人点个赞或留言",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_070",
+      "type": "adventure",
+      "category": "联系与分享",
+      "title": "记录一个想和朋友分享的趣事",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_071",
+      "type": "adventure",
+      "category": "学习与探索",
+      "title": "读一篇感兴趣文章的开头",
+      "defaultDurationMinutes": 8,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_072",
+      "type": "adventure",
+      "category": "学习与探索",
+      "title": "学会一个新单词",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_073",
+      "type": "adventure",
+      "category": "学习与探索",
+      "title": "看一个短知识视频",
+      "defaultDurationMinutes": 8,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_074",
+      "type": "adventure",
+      "category": "学习与探索",
+      "title": "查一个最近好奇的问题",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_075",
+      "type": "adventure",
+      "category": "学习与探索",
+      "title": "学一个简单快捷键或手机功能",
+      "defaultDurationMinutes": 10,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_076",
+      "type": "adventure",
+      "category": "学习与探索",
+      "title": "浏览一个城市或国家的照片",
+      "defaultDurationMinutes": 8,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_077",
+      "type": "adventure",
+      "category": "学习与探索",
+      "title": "复习一个最近学过的小知识",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_078",
+      "type": "adventure",
+      "category": "学习与探索",
+      "title": "看一段艺术、设计或自然纪录短片",
+      "defaultDurationMinutes": 10,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_079",
+      "type": "adventure",
+      "category": "学习与探索",
+      "title": "整理一个收藏夹或稍后读列表",
+      "defaultDurationMinutes": 8,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_080",
+      "type": "adventure",
+      "category": "学习与探索",
+      "title": "写下一个还想了解的问题",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_081",
+      "type": "adventure",
+      "category": "生活小安排",
+      "title": "看一眼明天的日历",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_082",
+      "type": "adventure",
+      "category": "生活小安排",
+      "title": "把一个待办事项拆成第一小步",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_083",
+      "type": "adventure",
+      "category": "生活小安排",
+      "title": "给明天准备一件顺手的物品",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_084",
+      "type": "adventure",
+      "category": "生活小安排",
+      "title": "清理手机相册里的5张重复或无用照片",
+      "defaultDurationMinutes": 8,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_085",
+      "type": "adventure",
+      "category": "生活小安排",
+      "title": "删除或归档一封不需要的邮件",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_086",
+      "type": "adventure",
+      "category": "生活小安排",
+      "title": "给一个常用物品找固定位置",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_087",
+      "type": "adventure",
+      "category": "生活小安排",
+      "title": "补充一项快用完的日用品清单",
+      "defaultDurationMinutes": 8,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_088",
+      "type": "adventure",
+      "category": "生活小安排",
+      "title": "检查一个常用设备的电量",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_089",
+      "type": "adventure",
+      "category": "生活小安排",
+      "title": "把一个想法记进备忘录",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_090",
+      "type": "adventure",
+      "category": "生活小安排",
+      "title": "为休息时间做一个小选择",
+      "defaultDurationMinutes": 8,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_091",
+      "type": "adventure",
+      "category": "情绪与感官",
+      "title": "闻一闻喜欢的香气或茶香",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_092",
+      "type": "adventure",
+      "category": "情绪与感官",
+      "title": "选一件让自己安心的小物放在身边",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_093",
+      "type": "adventure",
+      "category": "情绪与感官",
+      "title": "找出房间里三样自己喜欢的东西",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_094",
+      "type": "adventure",
+      "category": "情绪与感官",
+      "title": "把灯光调成让自己舒服的状态",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_095",
+      "type": "adventure",
+      "category": "情绪与感官",
+      "title": "听一段雨声、海浪声或白噪音",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_096",
+      "type": "adventure",
+      "category": "情绪与感官",
+      "title": "用一句话描述现在的心情",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_097",
+      "type": "adventure",
+      "category": "情绪与感官",
+      "title": "回想今天一个还不错的瞬间",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_098",
+      "type": "adventure",
+      "category": "情绪与感官",
+      "title": "给自己安排一段不带内疚的休息",
+      "defaultDurationMinutes": 8,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_099",
+      "type": "adventure",
+      "category": "情绪与感官",
+      "title": "选一件现在可以暂时放下的事",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    },
+    {
+      "id": "home_100",
+      "type": "adventure",
+      "category": "情绪与感官",
+      "title": "对自己说一句温和的话",
+      "defaultDurationMinutes": 5,
+      "successCriteria": "完成这件小事中的最小动作即可，不要求完美。",
+      "source": "product_curated",
+      "enabled": true
+    }
+  ]
+}
