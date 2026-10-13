@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C0A123456789ABCDEF000001 /* AdventureRouletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A123456789ABCDEF000004 /* AdventureRouletteView.swift */; };
+		C0A123456789ABCDEF000002 /* home_boredom_100_tasks.json in Resources */ = {isa = PBXBuildFile; fileRef = C0A123456789ABCDEF000003 /* home_boredom_100_tasks.json */; };
 		B94263C02EB3FC2F00EEC90E /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94263BF2EB3FC2F00EEC90E /* StatsViewModel.swift */; };
 		B94263C82EB42AAD00EEC90E /* HabitFormationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94263C72EB42AAD00EEC90E /* HabitFormationView.swift */; };
 		B94263D02EB42C4800EEC90E /* LevelUpView .swift in Sources */ = {isa = PBXBuildFile; fileRef = B94263CF2EB42C4800EEC90E /* LevelUpView .swift */; };
@@ -48,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C0A123456789ABCDEF000003 /* home_boredom_100_tasks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = home_boredom_100_tasks.json; sourceTree = "<group>"; };
+		C0A123456789ABCDEF000004 /* AdventureRouletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureRouletteView.swift; sourceTree = "<group>"; };
 		B94263BF2EB3FC2F00EEC90E /* StatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
 		B94263C72EB42AAD00EEC90E /* HabitFormationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitFormationView.swift; sourceTree = "<group>"; };
 		B94263CF2EB42C4800EEC90E /* LevelUpView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LevelUpView .swift"; sourceTree = "<group>"; };
@@ -173,6 +177,8 @@
 				B95E5DCB2EB2CA5E00EA257A /* TimerView.swift */,
 				B95E5DCD2EB2CAEC00EA257A /* HabitListView.swift */,
 				B94263DF2EB4595E00EEC90E /* MainTabView.swift */,
+				C0A123456789ABCDEF000004 /* AdventureRouletteView.swift */,
+				C0A123456789ABCDEF000003 /* home_boredom_100_tasks.json */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0A123456789ABCDEF000002 /* home_boredom_100_tasks.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0A123456789ABCDEF000001 /* AdventureRouletteView.swift in Sources */,
 				B95E5DAD2EB2BF1900EA257A /* AttributeType.swift in Sources */,
 				B95E5DAC2EB2BEFE00EA257A /* RatingType.swift in Sources */,
 				B94263D02EB42C4800EEC90E /* LevelUpView .swift in Sources */,
