@@ -39,7 +39,8 @@ class HabitViewModel: ObservableObject {
     }
     
     // MARK: - 创建新习惯
-    func createHabit(name: String, attributeType: String, estimatedMinutes: Int16, isFormationTask: Bool) {
+    @discardableResult
+    func createHabit(name: String, attributeType: String, estimatedMinutes: Int16, isFormationTask: Bool) -> Habit {
         let newHabit = Habit(context: context)
         newHabit.id = UUID()
         newHabit.name = name
@@ -63,6 +64,7 @@ class HabitViewModel: ObservableObject {
         
         saveContext()
         fetchHabits()
+        return newHabit
     }
     
     // MARK: - 删除习惯
