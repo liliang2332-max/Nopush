@@ -107,6 +107,9 @@ struct HomeView: View {
                     HabitFormationStatusCard()
                         .padding(.horizontal)
                     
+                    HomeTaskWheelCard(habitViewModel: habitViewModel)
+                        .padding(.horizontal)
+                    
                     VStack(alignment: .leading, spacing: 12) {
                         Text("今日任务")
                             .font(.title2)
@@ -992,3 +995,266 @@ struct HabitFormationStatusCard: View {
         currentTask = formationManager.currentFormationTask
     }
 }
+
+
+struct StayHomeTask: Identifiable, Hashable {
+    let id: Int
+    let title: String
+    let attribute: AttributeType
+}
+
+enum StayHomeTaskPool {
+    static let tasks: [StayHomeTask] = {
+        let groups: [(AttributeType, [String])] = [
+            (.strength, [
+                "跟着音乐活动身体 10 分钟", "做一组轻柔的全身拉伸", "练习 5 分钟肩颈放松",
+                "做 10 次坐站练习", "沿着房间慢走 5 分钟", "跟一段低冲击居家操",
+                "练习靠墙站立 2 分钟", "做一组手臂绕环和扩胸", "试试 5 分钟椅子瑜伽",
+                "做一组小腿和脚踝活动", "跟着喜欢的歌自由舞动", "练习深呼吸和身体扫描",
+                "做 10 次墙壁俯卧撑", "完成一组温和的腰背伸展", "做几次提踵练习",
+                "在家走动并活动手脚 8 分钟", "练习平衡站立并扶稳支撑物", "做一组手腕和手指放松",
+                "跟一段适合自己的拉伸视频", "做 5 分钟轻松原地踏步", "练习坐姿抬膝活动",
+                "用泡沫轴或毛巾放松小腿", "做一组胸椎转动伸展", "完成 10 次深蹲到椅子",
+                "挑一个身体部位做温和拉伸"
+            ]),
+            (.intelligence, [
+                "读完手边书的 5 页", "听一段 10 分钟的知识播客", "学会一个新单词并造句",
+                "写下今天想到的 3 个问题", "看一篇感兴趣的短文章", "学一个快捷键并马上试用",
+                "复习 5 张单词卡片", "读一段历史或科普内容", "看一段短教程并记下要点",
+                "写一段 100 字的小记录", "学一道新菜的做法", "整理一个最近想学的主题",
+                "完成一道轻量的脑筋急转弯", "了解一个陌生词语的来历", "读一篇和工作无关的文章",
+                "练习 10 分钟外语听力", "记下今天新学到的一件事", "看一段博物馆或自然纪录短片",
+                "试着用自己的话解释一个概念", "给未来的自己写一张便签", "学一个简单的纸艺折法",
+                "读几页以前买了还没读的书", "选一个主题做 10 分钟小研究", "练习写一首短诗或俳句",
+                "把一个复杂想法画成简单示意图"
+            ]),
+            (.agility, [
+                "整理书桌上的一个小区域", "清理手机里 10 张重复照片", "把一个抽屉整理 10 分钟",
+                "给常用物品找一个固定位置", "收拾沙发周围的杂物", "整理电脑桌面上的文件",
+                "把洗好的衣物叠好一小部分", "清洁一个常用杯子或水壶", "给植物浇水并擦掉枯叶",
+                "整理冰箱里一个小角落", "更换床单或整理床铺", "擦拭门把手和常用开关",
+                "把待办事项删减成最重要的 3 项", "整理包里的票据和小物件", "清理一个过期的备忘录列表",
+                "把今天要用的东西提前放好", "把一双鞋擦干净并归位", "收纳一小篮散落物品",
+                "整理一个文件夹或纸质文件", "清洁键盘或鼠标表面", "把快递纸箱折好并归类",
+                "为明天准备一套衣服", "整理床头柜上的物品", "给冰箱列一份现有食材清单",
+                "挑一个角落快速清理 5 分钟"
+            ]),
+            (.charisma, [
+                "给一位朋友发消息问候近况", "给家人发一张今天的生活照片", "给重要的人认真说声谢谢",
+                "给很久没联系的人发一句问候", "录一段语音分享最近的小发现", "写一张感谢便签留给身边的人",
+                "和家人聊聊最近看过的好东西", "给朋友推荐一首最近喜欢的歌", "回复一条一直搁着的友善消息",
+                "给自己写一句鼓励的话", "整理并分享一张温暖的旧照片", "问问朋友最近有没有需要帮忙的事",
+                "给亲近的人发一个真诚的赞美", "和同住的人一起喝杯水聊 5 分钟", "给朋友分享一份简单食谱",
+                "写下一个想感谢的人和原因", "给家人打一个简短电话", "向朋友介绍一本最近喜欢的书",
+                "给邻居或同事发送一句友好问候", "约一位朋友下次一起散步", "给重要的人发一个拥抱表情",
+                "分享一件今天让你开心的小事", "认真听完一首喜欢的歌并想起某个人", "写一张之后想送出的卡片",
+                "对身边的人表达一次具体的感谢"
+            ])
+        ]
+        return groups.enumerated().flatMap { groupIndex, group in
+            group.1.enumerated().map { itemIndex, title in
+                StayHomeTask(id: groupIndex * 25 + itemIndex, title: title, attribute: group.0)
+            }
+        }
+    }()
+}
+
+private struct HomeTaskWheelCard: View {
+    @ObservedObject var habitViewModel: HabitViewModel
+    @EnvironmentObject private var expViewModel: ExperienceViewModel
+    @State private var wheelRotation = 0.0
+    @State private var isSpinning = false
+    @State private var isShowingTask = false
+    @State private var selectedTask: StayHomeTask?
+
+    var body: some View {
+        VStack(spacing: 16) {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("宅家任务转盘")
+                        .font(.title3.bold())
+                    Text("从 100 件小事里抽一个，轻松开始")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                Image(systemName: "sparkles")
+                    .font(.title2)
+                    .foregroundStyle(.orange)
+            }
+
+            TaskWheelGraphic()
+                .frame(width: 196, height: 196)
+                .rotationEffect(.degrees(wheelRotation))
+                .accessibilityHidden(true)
+
+            Button {
+                guard !isSpinning else { return }
+                selectedTask = StayHomeTaskPool.tasks.randomElement()
+                isSpinning = true
+                withAnimation(.easeOut(duration: 1.7)) {
+                    wheelRotation += Double.random(in: 1440...2160)
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.75) {
+                    isSpinning = false
+                    isShowingTask = selectedTask != nil
+                }
+            } label: {
+                Label(isSpinning ? "正在抽取…" : "转一个任务", systemImage: "arrow.trianglehead.2.clockwise.rotate.90")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 14)
+                    .foregroundStyle(.white)
+                    .background(Color.indigo, in: RoundedRectangle(cornerRadius: 14))
+            }
+            .disabled(isSpinning)
+            .accessibilityIdentifier("homeTaskWheel.drawButton")
+        }
+        .padding(18)
+        .background(Color(UIColor.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 20))
+        .sheet(isPresented: $isShowingTask, onDismiss: { selectedTask = nil }) {
+            if let selectedTask {
+                NavigationStack {
+                    HomeTaskDetailView(task: selectedTask) { minutes in
+                        habitViewModel.createHabit(
+                            name: selectedTask.title,
+                            attributeType: selectedTask.attribute.rawValue,
+                            estimatedMinutes: Int16(minutes),
+                            isFormationTask: false
+                        )
+                    }
+                    .environmentObject(expViewModel)
+                }
+            }
+        }
+    }
+}
+
+private struct TaskWheelGraphic: View {
+    private let colors: [Color] = [
+        Color.orange.opacity(0.78), Color.pink.opacity(0.72),
+        Color.purple.opacity(0.72), Color.blue.opacity(0.72),
+        Color.teal.opacity(0.78), Color.yellow.opacity(0.82)
+    ]
+
+    var body: some View {
+        ZStack {
+            Canvas { context, size in
+                let center = CGPoint(x: size.width / 2, y: size.height / 2)
+                let radius = min(size.width, size.height) / 2
+                for index in 0..<12 {
+                    var wedge = Path()
+                    wedge.move(to: center)
+                    wedge.addArc(
+                        center: center,
+                        radius: radius,
+                        startAngle: .degrees(Double(index) * 30 - 90),
+                        endAngle: .degrees(Double(index + 1) * 30 - 90),
+                        clockwise: false
+                    )
+                    wedge.closeSubpath()
+                    context.fill(wedge, with: .color(colors[index % colors.count]))
+                    context.stroke(wedge, with: .color(.white.opacity(0.7)), lineWidth: 2)
+                }
+            }
+            .clipShape(Circle())
+            Circle()
+                .fill(.white)
+                .frame(width: 72, height: 72)
+                .overlay {
+                    Image(systemName: "sparkles")
+                        .font(.system(size: 28, weight: .semibold))
+                        .foregroundStyle(.orange)
+                }
+            Circle()
+                .stroke(.white, lineWidth: 4)
+        }
+        .shadow(color: .black.opacity(0.12), radius: 12, y: 6)
+    }
+}
+
+private struct HomeTaskDetailView: View {
+    let task: StayHomeTask
+    let onAddToToday: (Int) -> Habit
+    @EnvironmentObject private var expViewModel: ExperienceViewModel
+    @State private var estimatedMinutes = 15
+    @State private var createdHabit: Habit?
+
+    var body: some View {
+        VStack(spacing: 22) {
+            VStack(spacing: 12) {
+                Text(task.attribute.icon)
+                    .font(.system(size: 42))
+                Text(task.title)
+                    .font(.title2.bold())
+                    .multilineTextAlignment(.center)
+                Text(task.attribute.rawValue)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(task.attribute.color)
+            }
+            .padding(.top, 28)
+
+            Text("按今天的状态做轻量版也可以。时间到了就停，不必追求一次做完。")
+                .font(.body)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 12)
+
+            HStack {
+                Text("预计用时")
+                    .font(.headline)
+                Spacer()
+                TextField("分钟", value: $estimatedMinutes, format: .number)
+                    .keyboardType(.numberPad)
+                    .multilineTextAlignment(.trailing)
+                    .frame(width: 72)
+                    .textFieldStyle(.roundedBorder)
+                Text("分钟")
+                    .foregroundStyle(.secondary)
+            }
+            .padding(16)
+            .background(Color(UIColor.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 14))
+
+            if let createdHabit {
+                VStack(spacing: 12) {
+                    Text("已加入今日任务")
+                        .font(.headline)
+                        .foregroundStyle(.green)
+                    NavigationLink {
+                        TimerView(habit: createdHabit)
+                            .environmentObject(expViewModel)
+                    } label: {
+                        Label("进入计时页", systemImage: "timer")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 14)
+                            .foregroundStyle(.white)
+                            .background(Color.indigo, in: RoundedRectangle(cornerRadius: 14))
+                    }
+                    Text("计时器会在你点下「开始」后启动。")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            } else {
+                Button {
+                    createdHabit = onAddToToday(estimatedMinutes)
+                } label: {
+                    Label("加入今日任务", systemImage: "plus.circle.fill")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 14)
+                        .foregroundStyle(.white)
+                        .background(estimatedMinutes > 0 ? Color.indigo : Color.gray, in: RoundedRectangle(cornerRadius: 14))
+                }
+                .disabled(estimatedMinutes <= 0)
+                .accessibilityIdentifier("homeTaskWheel.addTaskButton")
+            }
+
+            Spacer(minLength: 0)
+        }
+        .padding(20)
+        .navigationTitle("任务详情")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+

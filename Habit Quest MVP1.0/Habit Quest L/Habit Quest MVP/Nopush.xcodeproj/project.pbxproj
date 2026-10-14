@@ -36,14 +36,14 @@
 			containerPortal = B95E5D692EB2B60700EA257A /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B95E5D702EB2B60700EA257A;
-			remoteInfo = "Habit Quest MVP";
+			remoteInfo = Nopush;
 		};
 		B95E5D8E2EB2B60900EA257A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B95E5D692EB2B60700EA257A /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B95E5D702EB2B60700EA257A;
-			remoteInfo = "Habit Quest MVP";
+			remoteInfo = Nopush;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -219,7 +219,7 @@
 			name = Nopush;
 			packageProductDependencies = (
 			);
-			productName = "Habit Quest MVP";
+			productName = Nopush;
 			productReference = B95E5D712EB2B60700EA257A /* Nopush.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -242,7 +242,7 @@
 			name = NopushTests;
 			packageProductDependencies = (
 			);
-			productName = "Habit Quest MVPTests";
+			productName = NopushTests;
 			productReference = B95E5D832EB2B60900EA257A /* NopushTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -265,7 +265,7 @@
 			name = NopushUITests;
 			packageProductDependencies = (
 			);
-			productName = "Habit Quest MVPUITests";
+			productName = NopushUITests;
 			productReference = B95E5D8D2EB2B60900EA257A /* NopushUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -601,7 +601,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Leon2332.Habit-Quest-MVPTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.liangli.NopushTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -622,7 +622,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Leon2332.Habit-Quest-MVPTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.liangli.NopushTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -641,7 +641,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Leon2332.Habit-Quest-MVPUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.liangli.NopushUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -649,7 +649,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Habit Quest MVP";
+				TEST_TARGET_NAME = Nopush;
 			};
 			name = Debug;
 		};
@@ -660,7 +660,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Leon2332.Habit-Quest-MVPUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.liangli.NopushUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -668,7 +668,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Habit Quest MVP";
+				TEST_TARGET_NAME = Nopush;
 			};
 			name = Release;
 		};
