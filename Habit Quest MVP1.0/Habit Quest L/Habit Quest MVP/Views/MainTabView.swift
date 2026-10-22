@@ -1,5 +1,6 @@
 import SwiftUI
 import CoreData
+import Combine
 
 struct MainTabView: View {
     @StateObject private var expViewModel: ExperienceViewModel
