@@ -10,8 +10,9 @@ import Testing
 
 struct Habit_Quest_MVPTests {
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+    @Test func homeTaskPoolContainsOneHundredUniqueTasks() {
+        #expect(StayHomeTaskPool.tasks.count == 100)
+        #expect(Set(StayHomeTaskPool.tasks.map(\.title)).count == 100)
     }
 
 }

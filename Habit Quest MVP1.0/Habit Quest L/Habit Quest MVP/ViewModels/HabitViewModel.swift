@@ -39,13 +39,15 @@ class HabitViewModel: ObservableObject {
     }
     
     // MARK: - 创建新习惯
-    func createHabit(name: String, attributeType: String, estimatedMinutes: Int16, isFormationTask: Bool) {
+    @discardableResult
+    func createHabit(name: String, attributeType: String, estimatedMinutes: Int16, isFormationTask: Bool, taskType: String = "daily") -> Habit {
         let newHabit = Habit(context: context)
         newHabit.id = UUID()
         newHabit.name = name
         newHabit.attributeType = attributeType
         newHabit.estimatedMinutes = estimatedMinutes
         newHabit.isFormationTask = isFormationTask
+        newHabit.setValue(taskType, forKey: "taskType")
         newHabit.isActive = true
         newHabit.createdDate = Date()
         newHabit.completedCount = 0
@@ -63,6 +65,7 @@ class HabitViewModel: ObservableObject {
         
         saveContext()
         fetchHabits()
+        return newHabit
     }
     
     // MARK: - 删除习惯

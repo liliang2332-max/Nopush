@@ -1,5 +1,6 @@
 import SwiftUI
 import CoreData
+import Combine
 
 struct MainTabView: View {
     @StateObject private var expViewModel: ExperienceViewModel
@@ -107,6 +108,9 @@ struct HomeView: View {
                     HabitFormationStatusCard()
                         .padding(.horizontal)
                     
+                    HomeTaskWheelCard(habitViewModel: habitViewModel)
+                        .padding(.horizontal)
+                    
                     VStack(alignment: .leading, spacing: 12) {
                         Text("今日任务")
                             .font(.title2)
@@ -117,7 +121,13 @@ struct HomeView: View {
                             EmptyHabitsView()
                         } else {
                             ForEach(habitViewModel.habits, id: \.self) { habit in
-                                NavigationLink(destination: TimerView(habit: habit).environmentObject(expViewModel)) {
+                                NavigationLink {
+                                    if (habit.value(forKey: "taskType") as? String) == "adventure" {
+                                        AdventureTaskTimerView(habit: habit)
+                                    } else {
+                                        TimerView(habit: habit).environmentObject(expViewModel)
+                                    }
+                                } label: {
                                     HabitRowView(habit: habit)
                                 }
                                 .buttonStyle(PlainButtonStyle())
@@ -990,5 +1000,540 @@ struct HabitFormationStatusCard: View {
     private func loadCurrentTask() {
         let formationManager = HabitFormationManager(context: viewContext)
         currentTask = formationManager.currentFormationTask
+    }
+}
+
+
+struct StayHomeTask: Identifiable, Hashable {
+    let id: Int
+    let title: String
+    let attribute: AttributeType
+}
+
+enum StayHomeTaskPool {
+    static let tasks: [StayHomeTask] = {
+        let groups: [(AttributeType, [String])] = [
+            (.strength, [
+                "跟着音乐活动身体 10 分钟", "做一组轻柔的全身拉伸", "练习 5 分钟肩颈放松",
+                "做 10 次坐站练习", "沿着房间慢走 5 分钟", "跟一段低冲击居家操",
+                "练习靠墙站立 2 分钟", "做一组手臂绕环和扩胸", "试试 5 分钟椅子瑜伽",
+                "做一组小腿和脚踝活动", "跟着喜欢的歌自由舞动", "练习深呼吸和身体扫描",
+                "做 10 次墙壁俯卧撑", "完成一组温和的腰背伸展", "做几次提踵练习",
+                "在家走动并活动手脚 8 分钟", "练习平衡站立并扶稳支撑物", "做一组手腕和手指放松",
+                "跟一段适合自己的拉伸视频", "做 5 分钟轻松原地踏步", "练习坐姿抬膝活动",
+                "用泡沫轴或毛巾放松小腿", "做一组胸椎转动伸展", "完成 10 次深蹲到椅子",
+                "挑一个身体部位做温和拉伸"
+            ]),
+            (.intelligence, [
+                "读完手边书的 5 页", "听一段 10 分钟的知识播客", "学会一个新单词并造句",
+                "写下今天想到的 3 个问题", "看一篇感兴趣的短文章", "学一个快捷键并马上试用",
+                "复习 5 张单词卡片", "读一段历史或科普内容", "看一段短教程并记下要点",
+                "写一段 100 字的小记录", "学一道新菜的做法", "整理一个最近想学的主题",
+                "完成一道轻量的脑筋急转弯", "了解一个陌生词语的来历", "读一篇和工作无关的文章",
+                "练习 10 分钟外语听力", "记下今天新学到的一件事", "看一段博物馆或自然纪录短片",
+                "试着用自己的话解释一个概念", "给未来的自己写一张便签", "学一个简单的纸艺折法",
+                "读几页以前买了还没读的书", "选一个主题做 10 分钟小研究", "练习写一首短诗或俳句",
+                "把一个复杂想法画成简单示意图"
+            ]),
+            (.agility, [
+                "整理书桌上的一个小区域", "清理手机里 10 张重复照片", "把一个抽屉整理 10 分钟",
+                "给常用物品找一个固定位置", "收拾沙发周围的杂物", "整理电脑桌面上的文件",
+                "把洗好的衣物叠好一小部分", "清洁一个常用杯子或水壶", "给植物浇水并擦掉枯叶",
+                "整理冰箱里一个小角落", "更换床单或整理床铺", "擦拭门把手和常用开关",
+                "把待办事项删减成最重要的 3 项", "整理包里的票据和小物件", "清理一个过期的备忘录列表",
+                "把今天要用的东西提前放好", "把一双鞋擦干净并归位", "收纳一小篮散落物品",
+                "整理一个文件夹或纸质文件", "清洁键盘或鼠标表面", "把快递纸箱折好并归类",
+                "为明天准备一套衣服", "整理床头柜上的物品", "给冰箱列一份现有食材清单",
+                "挑一个角落快速清理 5 分钟"
+            ]),
+            (.charisma, [
+                "给一位朋友发消息问候近况", "给家人发一张今天的生活照片", "给重要的人认真说声谢谢",
+                "给很久没联系的人发一句问候", "录一段语音分享最近的小发现", "写一张感谢便签留给身边的人",
+                "和家人聊聊最近看过的好东西", "给朋友推荐一首最近喜欢的歌", "回复一条一直搁着的友善消息",
+                "给自己写一句鼓励的话", "整理并分享一张温暖的旧照片", "问问朋友最近有没有需要帮忙的事",
+                "给亲近的人发一个真诚的赞美", "和同住的人一起喝杯水聊 5 分钟", "给朋友分享一份简单食谱",
+                "写下一个想感谢的人和原因", "给家人打一个简短电话", "向朋友介绍一本最近喜欢的书",
+                "给邻居或同事发送一句友好问候", "约一位朋友下次一起散步", "给重要的人发一个拥抱表情",
+                "分享一件今天让你开心的小事", "认真听完一首喜欢的歌并想起某个人", "写一张之后想送出的卡片",
+                "对身边的人表达一次具体的感谢"
+            ])
+        ]
+        return groups.enumerated().flatMap { groupIndex, group in
+            group.1.enumerated().map { itemIndex, title in
+                StayHomeTask(id: groupIndex * 25 + itemIndex, title: title, attribute: group.0)
+            }
+        }
+    }()
+}
+
+private struct HomeTaskWheelCard: View {
+    @ObservedObject var habitViewModel: HabitViewModel
+    @EnvironmentObject private var expViewModel: ExperienceViewModel
+    @State private var wheelRotation = 0.0
+    @State private var isSpinning = false
+    @State private var isShowingTask = false
+    @State private var selectedTask: StayHomeTask?
+    @AppStorage("nopush.adventureCoins") private var weeklyMistakeCoins = 5
+
+    var body: some View {
+        VStack(spacing: 16) {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("宅家任务转盘")
+                        .font(.title3.bold())
+                    Text("从 100 件小事里抽一个，轻松开始")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                Image(systemName: "sparkles")
+                    .font(.title2)
+                    .foregroundStyle(.orange)
+            }
+
+            HStack {
+                Label("本周犯错金币", systemImage: "bitcoinsign.circle.fill")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Text("\(weeklyMistakeCoins)/5")
+                    .font(.caption.bold())
+                    .foregroundStyle(Color(red: 0.92, green: 0.38, blue: 0.35))
+            }
+            .padding(.horizontal, 4)
+
+            TaskWheelGraphic()
+                .frame(width: 196, height: 196)
+                .rotationEffect(.degrees(wheelRotation))
+                .accessibilityHidden(true)
+
+            Button {
+                guard !isSpinning else { return }
+                selectedTask = StayHomeTaskPool.tasks.randomElement()
+                isSpinning = true
+                withAnimation(.easeOut(duration: 1.7)) {
+                    wheelRotation += Double.random(in: 1440...2160)
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.75) {
+                    isSpinning = false
+                    isShowingTask = selectedTask != nil
+                }
+            } label: {
+                Label(isSpinning ? "正在抽取…" : "转一个任务", systemImage: "arrow.trianglehead.2.clockwise.rotate.90")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 14)
+                    .foregroundStyle(.white)
+                    .background(Color.indigo, in: RoundedRectangle(cornerRadius: 14))
+            }
+            .disabled(isSpinning)
+            .accessibilityIdentifier("homeTaskWheel.drawButton")
+        }
+        .padding(18)
+        .background(Color(UIColor.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 20))
+        .sheet(isPresented: $isShowingTask, onDismiss: { selectedTask = nil }) {
+            if let selectedTask {
+                NavigationStack {
+                    HomeTaskDetailView(task: selectedTask) { minutes in
+                        habitViewModel.createHabit(
+                            name: selectedTask.title,
+                            attributeType: selectedTask.attribute.rawValue,
+                            estimatedMinutes: Int16(minutes),
+                            isFormationTask: false,
+                            taskType: "adventure"
+                        )
+                    }
+                    .environmentObject(expViewModel)
+                }
+            }
+        }
+    }
+}
+
+private struct TaskWheelGraphic: View {
+    private let colors: [Color] = [
+        Color.orange.opacity(0.78), Color.pink.opacity(0.72),
+        Color.purple.opacity(0.72), Color.blue.opacity(0.72),
+        Color.teal.opacity(0.78), Color.yellow.opacity(0.82)
+    ]
+
+    var body: some View {
+        ZStack {
+            Canvas { context, size in
+                let center = CGPoint(x: size.width / 2, y: size.height / 2)
+                let radius = min(size.width, size.height) / 2
+                for index in 0..<12 {
+                    var wedge = Path()
+                    wedge.move(to: center)
+                    wedge.addArc(
+                        center: center,
+                        radius: radius,
+                        startAngle: .degrees(Double(index) * 30 - 90),
+                        endAngle: .degrees(Double(index + 1) * 30 - 90),
+                        clockwise: false
+                    )
+                    wedge.closeSubpath()
+                    context.fill(wedge, with: .color(colors[index % colors.count]))
+                    context.stroke(wedge, with: .color(.white.opacity(0.7)), lineWidth: 2)
+                }
+            }
+            .clipShape(Circle())
+            Circle()
+                .fill(.white)
+                .frame(width: 72, height: 72)
+                .overlay {
+                    Image(systemName: "sparkles")
+                        .font(.system(size: 28, weight: .semibold))
+                        .foregroundStyle(.orange)
+                }
+            Circle()
+                .stroke(.white, lineWidth: 4)
+        }
+        .shadow(color: .black.opacity(0.12), radius: 12, y: 6)
+    }
+}
+
+private struct HomeTaskDetailView: View {
+    let task: StayHomeTask
+    let onAddToToday: (Int) -> Habit
+    @EnvironmentObject private var expViewModel: ExperienceViewModel
+    @State private var estimatedMinutes = 15
+    @State private var createdHabit: Habit?
+
+    var body: some View {
+        VStack(spacing: 22) {
+            VStack(spacing: 12) {
+                Text(task.attribute.icon)
+                    .font(.system(size: 42))
+                Text(task.title)
+                    .font(.title2.bold())
+                    .multilineTextAlignment(.center)
+                Text(task.attribute.rawValue)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(task.attribute.color)
+            }
+            .padding(.top, 28)
+
+            Text("按今天的状态做轻量版也可以。时间到了就停，不必追求一次做完。")
+                .font(.body)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 12)
+
+            HStack {
+                Text("预计用时")
+                    .font(.headline)
+                Spacer()
+                TextField("分钟", value: $estimatedMinutes, format: .number)
+                    .keyboardType(.numberPad)
+                    .multilineTextAlignment(.trailing)
+                    .frame(width: 72)
+                    .textFieldStyle(.roundedBorder)
+                Text("分钟")
+                    .foregroundStyle(.secondary)
+            }
+            .padding(16)
+            .background(Color(UIColor.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 14))
+
+            if let createdHabit {
+                VStack(spacing: 12) {
+                    Text("已加入今日任务")
+                        .font(.headline)
+                        .foregroundStyle(.green)
+                    NavigationLink {
+                        AdventureTaskTimerView(habit: createdHabit)
+                    } label: {
+                        Label("进入计时页", systemImage: "timer")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 14)
+                            .foregroundStyle(.white)
+                            .background(Color.indigo, in: RoundedRectangle(cornerRadius: 14))
+                    }
+                    Text("计时器会在你点下「开始」后启动。")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            } else {
+                Button {
+                    createdHabit = onAddToToday(estimatedMinutes)
+                } label: {
+                    Label("加入今日任务", systemImage: "plus.circle.fill")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 14)
+                        .foregroundStyle(.white)
+                        .background(estimatedMinutes > 0 ? Color.indigo : Color.gray, in: RoundedRectangle(cornerRadius: 14))
+                }
+                .disabled(estimatedMinutes <= 0)
+                .accessibilityIdentifier("homeTaskWheel.addTaskButton")
+            }
+
+            Spacer(minLength: 0)
+        }
+        .padding(20)
+        .navigationTitle("任务详情")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+
+
+private struct AdventureTaskTimerView: View {
+    private enum Phase { case ready, running, completed, failed }
+    let habit: Habit
+
+    @Environment(\.managedObjectContext) private var context
+    @Environment(\.dismiss) private var dismiss
+    @AppStorage("nopush.adventureCoins") private var weeklyMistakeCoins = 5
+    @AppStorage("nopush.adventureCoinWindow") private var coinWindowStart = 0.0
+    @State private var phase: Phase = .ready
+    @State private var elapsedSeconds = 0
+    @State private var isRunning = false
+    @State private var hasUsedExtension = false
+    @State private var extensionOfferShown = false
+    @State private var showing80Choice = false
+    @State private var showingRechargeNotice = false
+
+    private let ticker = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    private let coral = Color(red: 1.0, green: 0.42, blue: 0.42)
+    private let teal = Color(red: 0.31, green: 0.80, blue: 0.77)
+
+    private var taskName: String { habit.value(forKey: "name") as? String ?? "今日冒险" }
+    private var durationMinutes: Int {
+        max(1, Int(habit.value(forKey: "estimatedMinutes") as? Int16 ?? 20))
+    }
+    private var baseDurationSeconds: Int { durationMinutes * 60 }
+    private var deadlineSeconds: Int { baseDurationSeconds + (hasUsedExtension ? 15 * 60 : 0) }
+    private var progress: Double {
+        min(Double(elapsedSeconds) / Double(max(1, baseDurationSeconds)), 1.0)
+    }
+    private var remainingSeconds: Int { max(0, deadlineSeconds - elapsedSeconds) }
+
+    var body: some View {
+        ZStack {
+            Color(UIColor.systemGroupedBackground).ignoresSafeArea()
+            ScrollView {
+                VStack(spacing: 22) {
+                    switch phase {
+                    case .ready: readyContent
+                    case .running: runningContent
+                    case .completed: completedContent
+                    case .failed: failedContent
+                    }
+                }
+                .padding(20)
+                .frame(maxWidth: 520)
+                .frame(maxWidth: .infinity)
+            }
+        }
+        .navigationTitle("今日冒险")
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear(perform: refreshWeeklyCoinsIfNeeded)
+        .onReceive(ticker) { _ in tick() }
+        .confirmationDialog("到达自设时长的 80%", isPresented: $showing80Choice, titleVisibility: .visible) {
+            Button("购买延时包 · +15 分钟") {
+                hasUsedExtension = true
+                extensionOfferShown = true
+                isRunning = true
+                phase = .running
+            }
+            Button("按原计划继续") {
+                extensionOfferShown = true
+                isRunning = true
+                phase = .running
+            }
+            Button("这次先结束", role: .destructive) {
+                isRunning = false
+                phase = .failed
+            }
+        } message: {
+            Text("还差一点点。延时是可选的；延时包的货币和价格尚未设定。")
+        }
+        .alert("充值金币", isPresented: $showingRechargeNotice) {
+            Button("知道了", role: .cancel) { }
+        } message: {
+            Text("当前原型尚未接入真实支付。你可以清零当前任务后重新开始。")
+        }
+    }
+
+    private var readyContent: some View {
+        VStack(spacing: 22) {
+            Image(systemName: "sparkles")
+                .font(.system(size: 42))
+                .foregroundStyle(coral)
+                .padding(.top, 24)
+            Text(taskName).font(.title2.bold()).multilineTextAlignment(.center)
+            Text("给自己 \(durationMinutes) 分钟。准备好了再开始。")
+                .font(.body).foregroundStyle(.secondary).multilineTextAlignment(.center)
+            timerRing(time: "00:00", note: "尚未开始", fraction: 0)
+            Text("计时不会自动开始，点下按钮后才会启动。")
+                .font(.caption).foregroundStyle(.secondary)
+            Button {
+                elapsedSeconds = 0
+                hasUsedExtension = false
+                extensionOfferShown = false
+                phase = .running
+                isRunning = true
+            } label: {
+                Label("开始计时", systemImage: "play.fill")
+                    .font(.headline).frame(maxWidth: .infinity).padding(.vertical, 15)
+                    .foregroundStyle(.white).background(coral, in: RoundedRectangle(cornerRadius: 16))
+            }
+            .accessibilityIdentifier("adventureTimer.start")
+        }
+        .padding(18).frame(maxWidth: .infinity)
+        .background(.white, in: RoundedRectangle(cornerRadius: 24))
+    }
+
+    private var runningContent: some View {
+        VStack(spacing: 20) {
+            Text("正在冒险").font(.caption.bold()).foregroundStyle(teal)
+                .padding(.horizontal, 12).padding(.vertical, 7)
+                .background(teal.opacity(0.12), in: Capsule())
+            Text(taskName).font(.title2.bold()).multilineTextAlignment(.center)
+            Text(hasUsedExtension ? "延时包已使用 · 最多延长 15 分钟" : "你设定了 \(durationMinutes) 分钟")
+                .font(.subheadline).foregroundStyle(.secondary)
+            timerRing(
+                time: formattedTime(remainingSeconds),
+                note: hasUsedExtension && elapsedSeconds >= baseDurationSeconds ? "延时进行中" : "剩余时间",
+                fraction: progress
+            )
+            ProgressView(value: progress).tint(progress >= 0.8 ? coral : teal)
+            Text("已完成 \(Int(progress * 100))%")
+                .font(.subheadline.weight(.semibold)).foregroundStyle(.secondary)
+            Button {
+                isRunning = false
+                HabitViewModel(context: context).completeTask(habit: habit)
+                phase = .completed
+            } label: {
+                Label("我完成了", systemImage: "checkmark")
+                    .font(.headline).frame(maxWidth: .infinity).padding(.vertical, 15)
+                    .foregroundStyle(.white).background(teal, in: RoundedRectangle(cornerRadius: 16))
+            }
+            Button("这次先结束") { isRunning = false; phase = .failed }
+                .foregroundStyle(.secondary)
+            if !hasUsedExtension {
+                Text("到达你设定时间的 80% 时，可以选择是否延时。")
+                    .font(.caption).foregroundStyle(.secondary).multilineTextAlignment(.center)
+            }
+        }
+        .padding(18).frame(maxWidth: .infinity)
+        .background(.white, in: RoundedRectangle(cornerRadius: 24))
+    }
+
+    private var completedContent: some View {
+        VStack(spacing: 20) {
+            Image(systemName: "checkmark").font(.system(size: 36, weight: .bold))
+                .foregroundStyle(teal).frame(width: 78, height: 78)
+                .background(teal.opacity(0.13), in: Circle()).padding(.top, 22)
+            Text("这件小事，你做到了。").font(.title2.bold()).multilineTextAlignment(.center)
+            Text(taskName).font(.headline).foregroundStyle(.secondary)
+            Text("不用追求完美。你愿意开始，就已经很棒。")
+                .font(.body).multilineTextAlignment(.center).foregroundStyle(.secondary)
+            Button("完成") { dismiss() }
+                .font(.headline).frame(maxWidth: .infinity).padding(.vertical, 15)
+                .foregroundStyle(.white).background(coral, in: RoundedRectangle(cornerRadius: 16))
+        }
+        .padding(22).frame(maxWidth: .infinity)
+        .background(.white, in: RoundedRectangle(cornerRadius: 24))
+    }
+
+    private var failedContent: some View {
+        VStack(spacing: 18) {
+            Image(systemName: "arrow.counterclockwise")
+                .font(.system(size: 34, weight: .semibold)).foregroundStyle(Color.orange)
+                .frame(width: 72, height: 72).background(Color.orange.opacity(0.12), in: Circle())
+                .padding(.top, 16)
+            Text("这次还没完成").font(.title2.bold())
+            Text("没关系，准备好时可以再来一次。")
+                .font(.body).foregroundStyle(.secondary).multilineTextAlignment(.center)
+
+            if weeklyMistakeCoins > 0 {
+                Text("本周还剩 \(weeklyMistakeCoins) 枚金币。用 1 枚购买一次犯错机会，再挑战这项任务。")
+                    .font(.subheadline).multilineTextAlignment(.center).padding(14)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.yellow.opacity(0.18), in: RoundedRectangle(cornerRadius: 16))
+                Button {
+                    weeklyMistakeCoins -= 1
+                    elapsedSeconds = 0
+                    hasUsedExtension = false
+                    extensionOfferShown = false
+                    phase = .ready
+                } label: {
+                    Label("用 1 枚金币买一次重来机会", systemImage: "bitcoinsign.circle.fill")
+                        .font(.headline).frame(maxWidth: .infinity).padding(.vertical, 14)
+                        .foregroundStyle(.white).background(coral, in: RoundedRectangle(cornerRadius: 16))
+                }
+            } else {
+                Text("本周金币用完了。你可以充值，或清零当前任务后重新开始。")
+                    .font(.subheadline).multilineTextAlignment(.center).padding(14)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.yellow.opacity(0.18), in: RoundedRectangle(cornerRadius: 16))
+                Button("充值金币") { showingRechargeNotice = true }
+                    .font(.headline).frame(maxWidth: .infinity).padding(.vertical, 14)
+                    .foregroundStyle(.white).background(coral, in: RoundedRectangle(cornerRadius: 16))
+                Button("清零并重新开始任务", role: .destructive) { clearCurrentTaskAndReturn() }
+                    .font(.headline).frame(maxWidth: .infinity).padding(.vertical, 14)
+                    .background(Color(UIColor.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 16))
+            }
+            Button("放下这项任务，回到转盘") { clearCurrentTaskAndReturn() }
+                .font(.subheadline).foregroundStyle(.secondary).padding(.top, 4)
+        }
+        .padding(20).frame(maxWidth: .infinity)
+        .background(.white, in: RoundedRectangle(cornerRadius: 24))
+    }
+
+    private func timerRing(time: String, note: String, fraction: Double) -> some View {
+        ZStack {
+            Circle().stroke(Color.gray.opacity(0.12), lineWidth: 13)
+            Circle().trim(from: 0, to: min(max(fraction, 0), 1))
+                .stroke(coral, style: StrokeStyle(lineWidth: 13, lineCap: .round))
+                .rotationEffect(.degrees(-90))
+            VStack(spacing: 6) {
+                Text(time).font(.system(size: 42, weight: .bold, design: .rounded)).monospacedDigit()
+                Text(note).font(.caption).foregroundStyle(.secondary)
+            }
+        }
+        .frame(width: 220, height: 220).padding(.vertical, 8)
+    }
+
+    private func tick() {
+        guard phase == .running, isRunning, !showing80Choice else { return }
+        elapsedSeconds += 1
+        if !extensionOfferShown && !hasUsedExtension &&
+            elapsedSeconds >= Int(Double(baseDurationSeconds) * 0.8) {
+            elapsedSeconds = Int(Double(baseDurationSeconds) * 0.8)
+            extensionOfferShown = true
+            showing80Choice = true
+            return
+        }
+        if elapsedSeconds >= deadlineSeconds {
+            elapsedSeconds = deadlineSeconds
+            isRunning = false
+            phase = .failed
+        }
+    }
+
+    private func refreshWeeklyCoinsIfNeeded() {
+        let now = Date().timeIntervalSince1970
+        if coinWindowStart == 0 {
+            coinWindowStart = now
+        } else if now - coinWindowStart >= 7 * 24 * 60 * 60 {
+            weeklyMistakeCoins = 5
+            coinWindowStart = now
+        }
+    }
+
+    private func clearCurrentTaskAndReturn() {
+        isRunning = false
+        context.delete(habit)
+        do { try context.save() }
+        catch { print("删除冒险任务失败：\(error.localizedDescription)") }
+        dismiss()
+    }
+
+    private func formattedTime(_ seconds: Int) -> String {
+        String(format: "%02d:%02d", seconds / 60, seconds % 60)
     }
 }
