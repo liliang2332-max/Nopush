@@ -483,13 +483,13 @@ private struct AdventureTaskFlowSheet: View {
                 .font(.body)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
-            actionButton("试用延时包 · +15 分钟", icon: "plus.circle.fill") {
+            actionButton("用经验值兑换延时包 · +15 分钟", icon: "plus.circle.fill") {
                 extensionUsed = true
                 totalSeconds += 15 * 60
                 startedAt = Date()
                 stage = .running
             }
-            Text("延时包价格与支付方式尚未设定；此原型不会扣款。")
+            Text("延时包使用完成冒险获得的经验值兑换；具体兑换成本待确认。此原型暂不扣经验值。")
                 .font(.footnote)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -513,7 +513,7 @@ private struct AdventureTaskFlowSheet: View {
                 .multilineTextAlignment(.center)
             Text(task.title)
                 .foregroundColor(.secondary)
-            Text("完成一小步，也值得被记下来。")
+            Text("完成一小步，也值得被记下来。完成冒险获得的经验值可用于兑换延时包。")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
             actionButton("回到冒险转盘", icon: "sparkles") { dismiss() }
