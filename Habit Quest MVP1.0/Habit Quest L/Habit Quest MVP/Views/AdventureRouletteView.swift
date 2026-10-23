@@ -21,7 +21,6 @@ struct AdventureRouletteView: View {
     @State private var wheelTasks: [AdventureTask] = []
     @State private var selectedTask: AdventureTask?
     @State private var flowTask: AdventureTask?
-    @State private var showTaskPicker = false
     @State private var rotationDegrees = 0.0
     @State private var isSpinning = false
 
@@ -86,8 +85,8 @@ struct AdventureRouletteView: View {
                 .buttonStyle(.plain)
                 .disabled(isSpinning)
 
-                Button {
-                    showTaskPicker = true
+                NavigationLink {
+                    AdventureTaskPickerView(tasks: allTasks)
                 } label: {
                     Label("自己选一件", systemImage: "list.bullet")
                         .font(.subheadline.weight(.semibold))
@@ -132,9 +131,6 @@ struct AdventureRouletteView: View {
         .clipShape(RoundedRectangle(cornerRadius: 22))
         .sheet(item: $flowTask) { task in
             AdventureTaskFlowSheet(task: task)
-        }
-        .navigationDestination(isPresented: $showTaskPicker) {
-            AdventureTaskPickerView(tasks: allTasks)
         }
         .onAppear {
             if wheelTasks.isEmpty {
