@@ -725,7 +725,18 @@ private struct AdventureTaskPickerView: View {
         .searchable(text: $searchText, prompt: "搜索任务名称或分类")
         .overlay {
             if filteredTasks.isEmpty {
-                ContentUnavailableView.search(text: searchText)
+                VStack(spacing: 8) {
+                    Image(systemName: "magnifyingglass")
+                        .font(.title2)
+                        .foregroundColor(.secondary)
+                    Text("没有找到相关任务")
+                        .font(.headline)
+                    Text("换个任务名称或分类试试。")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .allowsHitTesting(false)
             }
         }
         .sheet(item: $flowTask) { task in
