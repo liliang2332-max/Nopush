@@ -21,6 +21,7 @@ struct AdventureRouletteView: View {
     @State private var wheelTasks: [AdventureTask] = []
     @State private var selectedTask: AdventureTask?
     @State private var flowTask: AdventureTask?
+    @State private var showTaskPicker = false
     @State private var rotationDegrees = 0.0
     @State private var isSpinning = false
 
@@ -85,6 +86,17 @@ struct AdventureRouletteView: View {
                 .buttonStyle(.plain)
                 .disabled(isSpinning)
 
+                Button {
+                    showTaskPicker = true
+                } label: {
+                    Label("自己选一件", systemImage: "list.bullet")
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundColor(.orange)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 10)
+                }
+                .buttonStyle(.plain)
+
                 if let task = selectedTask {
                     HStack(spacing: 12) {
                         Image(systemName: "checkmark.seal.fill")
@@ -120,6 +132,9 @@ struct AdventureRouletteView: View {
         .clipShape(RoundedRectangle(cornerRadius: 22))
         .sheet(item: $flowTask) { task in
             AdventureTaskFlowSheet(task: task)
+        }
+        .navigationDestination(isPresented: $showTaskPicker) {
+            AdventureTaskPickerView(tasks: allTasks)
         }
         .onAppear {
             if wheelTasks.isEmpty {
@@ -663,5 +678,62 @@ private struct AdventureTaskFlowSheet: View {
     private func formatted(_ seconds: TimeInterval) -> String {
         let value = max(0, Int(seconds.rounded(.up)))
         return String(format: "%02d:%02d", value / 60, value % 60)
+    }
+}
+
+
+private struct AdventureTaskPickerView: View {
+    let tasks: [AdventureTask]
+    @State private var searchText = ""
+    @State private var flowTask: AdventureTask?
+
+    private var filteredTasks: [AdventureTask] {
+        guard !searchText.isEmpty else { return tasks }
+        return tasks.filter {
+            $0.title.localizedCaseInsensitiveContains(searchText)
+                || $0.category.localizedCaseInsensitiveContains(searchText)
+        }
+    }
+
+    var body: some View {
+        List(filteredTasks) { task in
+            Button {
+                flowTask = task
+            } label: {
+                VStack(alignment: .leading, spacing: 5) {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(task.title)
+                            .font(.body.weight(.semibold))
+                            .foregroundColor(.primary)
+                        Spacer(minLength: 8)
+                        Text("\(task.defaultDurationMinutes) 分钟")
+                            .font(.caption.weight(.medium))
+                            .foregroundColor(.secondary)
+                    }
+                    Text(task.category)
+                        .font(.caption.weight(.semibold))
+                        .foregroundColor(.teal)
+                    Text(task.successCriteria)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .lineLimit(2)
+                }
+                .padding(.vertical, 5)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+        }
+        .listStyle(.insetGrouped)
+        .navigationTitle("自己选任务")
+        .navigationBarTitleDisplayMode(.inline)
+        .searchable(text: $searchText, prompt: "搜索任务名称或分类")
+        .overlay {
+            if filteredTasks.isEmpty {
+                ContentUnavailableView.search(text: searchText)
+            }
+        }
+        .sheet(item: $flowTask) { task in
+            AdventureTaskFlowSheet(task: task)
+        }
     }
 }
