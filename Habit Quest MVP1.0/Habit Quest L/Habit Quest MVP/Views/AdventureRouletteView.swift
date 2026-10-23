@@ -335,7 +335,7 @@ private struct AdventureTaskFlowSheet: View {
                         readyContent
                     case .running:
                         runningContent
-                    case .extension:
+                    case .extensionPrompt:
                         extensionContent
                     case .success:
                         successContent
@@ -350,8 +350,8 @@ private struct AdventureTaskFlowSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(stage == .running || stage == .extension ? "结束" : "关闭") {
-                        if stage == .running || stage == .extension {
+                    Button(stage == .running || stage == .extensionPrompt ? "结束" : "关闭") {
+                        if stage == .running || stage == .extensionPrompt {
                             stopAsFailed()
                         } else {
                             dismiss()
@@ -379,7 +379,7 @@ private struct AdventureTaskFlowSheet: View {
         case .setup: return "准备冒险"
         case .ready: return "准备开始"
         case .running: return "正在冒险"
-        case .extension: return "要继续吗？"
+        case .extensionPrompt: return "要继续吗？"
         case .success: return "冒险完成"
         case .failed: return "本次结束"
         }
@@ -463,7 +463,7 @@ private struct AdventureTaskFlowSheet: View {
             Button("演示：跳到 80% 节点") {
                 elapsedBeforePause = totalSeconds * 0.8
                 startedAt = nil
-                stage = .extension
+                stage = .extensionPrompt
             }
             .font(.footnote)
             .foregroundColor(.secondary)
@@ -587,7 +587,7 @@ private struct AdventureTaskFlowSheet: View {
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
-            if stage == .running || stage == .extension {
+            if stage == .running || stage == .extensionPrompt {
                 Text("你设定的时间：\(minutes) 分钟")
                     .font(.caption)
                     .foregroundColor(.secondary)
@@ -646,7 +646,7 @@ private struct AdventureTaskFlowSheet: View {
         if !extensionUsed && !extensionPromptDismissed && currentElapsed >= totalSeconds * 0.8 {
             elapsedBeforePause = totalSeconds * 0.8
             startedAt = nil
-            stage = .extension
+            stage = .extensionPrompt
         } else if currentElapsed >= totalSeconds {
             elapsedBeforePause = totalSeconds
             startedAt = nil
