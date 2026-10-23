@@ -93,6 +93,9 @@ struct HomeView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 20) {
+                    AdventureRouletteView()
+                        .padding(.horizontal)
+
                     HStack(spacing: 0) {
                         ForEach(AttributeType.allCases, id: \.self) { type in
                             SimpleAttributeCard(attributeType: type)
